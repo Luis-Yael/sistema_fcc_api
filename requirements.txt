@@ -1,0 +1,11 @@
+Django
+django-compat
+django-cors-headers
+djangorestframework
+django-filter
+mysqlclient
+pymysql
+django-rest-auth
+cryptography
+python-dateutil
+google-cloud-storage
