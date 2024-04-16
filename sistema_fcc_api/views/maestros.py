@@ -120,3 +120,11 @@ class MaestrosViewEdit(generics.CreateAPIView):
         user = MaestroSerializer(maestro, many=False).data
 
         return Response(user,200)
+    
+    def delete(self, request, *args, **kwargs):
+        maestro = get_object_or_404(Maestros, id=request.GET.get("id"))
+        try:
+            maestro.user.delete()
+            return Response({"details":"Maestro eliminado"},200)
+        except Exception as e:
+            return Response({"details":"Algo pasó al eliminar"},400)

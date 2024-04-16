@@ -138,3 +138,12 @@ class AdminsViewEdit(generics.CreateAPIView):
         user = AdminSerializer(admin, many=False).data
 
         return Response(user,200)
+    
+    #Eliminar administrador
+    def delete(self, request, *args, **kwargs):
+        admin = get_object_or_404(Administradores, id=request.GET.get("id"))
+        try:
+            admin.user.delete()
+            return Response({"details":"Administrador eliminado"},200)
+        except Exception as e:
+            return Response({"details":"Algo pasó al eliminar"},400)
